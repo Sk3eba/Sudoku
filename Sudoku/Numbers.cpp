@@ -6,6 +6,7 @@ Numbers::Numbers(sf::Vector2f position, float size, const sf::Font font)
     : m_position(position)
     , m_size(size)
     , m_cellSize(size / 3.f)
+    , m_font(font)
 {
     // initialize default numbers 1..9
     for (int i = 0; i < 9; ++i)
@@ -19,6 +20,8 @@ void Numbers::rebuildShapes()
     const float padding = std::max(4.f, m_cellSize * 0.08f);
     const float radius = std::max(1.f, (m_cellSize - 2.f * padding) * 0.5f);
 
+    m_buttons.clear();
+    m_texts.clear();
     m_buttons.reserve(9);
     m_texts.reserve(9);
 
@@ -43,16 +46,42 @@ void Numbers::rebuildShapes()
 
             m_buttons.push_back(circle);
 
-            sf::Text txt(font);
+            sf::Text txt(m_font);
+			const float size = std::max(8.f, radius * 1.1f);
             txt.setString(std::to_string(m_numbers[idx]));
             // character size based on radius
-            txt.setCharacterSize(static_cast<unsigned int>(std::max(8.f, radius * 1.1f)));
+            txt.setCharacterSize(size);
             txt.setFillColor(sf::Color::Black);
             // center text origin
             sf::FloatRect tb = txt.getLocalBounds();
+            txt.setOrigin(tb.getCenter());
             txt.setPosition(center);
 
             m_texts.push_back(txt);
+        }
+    }
+
+    updateButtonVisuals();
+    
+}
+
+void Numbers::updateButtonVisuals()
+{
+    for (size_t i = 0; i < m_buttons.size(); ++i)
+    {
+        if (static_cast<int>(i) == m_selectedIndex)
+        {
+            // selected appearance
+            m_buttons[i].setFillColor(sf::Color(100, 180, 255)); // bluish
+            m_buttons[i].setOutlineColor(sf::Color(30, 90, 160));
+            m_buttons[i].setOutlineThickness(2.f);
+        }
+        else
+        {
+            // normal appearance
+            m_buttons[i].setFillColor(sf::Color(230, 230, 230));
+            m_buttons[i].setOutlineColor(sf::Color::Black);
+            m_buttons[i].setOutlineThickness(1.f);
         }
     }
 }
@@ -74,24 +103,64 @@ void Numbers::draw(sf::RenderTarget& target) const
         target.draw(t);
 }
 
-void Numbers::setNumber(sf::Vector2i cell, int number)
+void Numbers::setSelectedCell(sf::Vector2i cell)
 {
     if (cell.x < 0 || cell.x > 2 || cell.y < 0 || cell.y > 2)
-        return;
-    int idx = cell.y * 3 + cell.x;
-    m_numbers[idx] = number;
-
-    // Update the corresponding text if present
-    if (idx >= 0 && idx < static_cast<int>(m_texts.size()))
     {
-        m_texts[idx].setString(std::to_string(number));
+        m_selectedIndex = -1;
     }
+    else
+    {
+        m_selectedIndex = cell.y * 3 + cell.x;
+    }
+
+    // update visuals immediately
+    updateButtonVisuals();
 }
 
-int Numbers::getNumber(sf::Vector2i cell) const
+sf::Vector2i Numbers::getSelectedCell() const
 {
-    if (cell.x < 0 || cell.x > 2 || cell.y < 0 || cell.y > 2)
-        return 0;
-    int idx = cell.y * 3 + cell.x;
-    return m_numbers[idx];
+    if (m_selectedIndex < 0) return { -1, -1 };
+    return { m_selectedIndex % 3, m_selectedIndex / 3 };
+}
+
+int Numbers::getSelectedNumber() const
+{
+    if (m_selectedIndex < 0) return -1;
+    return m_numbers[m_selectedIndex];
+}
+
+void Numbers::selectAtPosition(sf::Vector2f worldPos)
+{
+    sf::Vector2i cell = cellAtPosition(worldPos);
+    if (cell.x >= 0)
+        setSelectedCell(cell);
+    else
+        setSelectedCell({ -1, -1 });
+}
+
+sf::Vector2i Numbers::cellAtPosition(sf::Vector2f worldPos) const
+{
+    const float padding = std::max(4.f, m_cellSize * 0.08f);
+    const float radius = std::max(1.f, (m_cellSize - 2.f * padding) * 0.5f);
+
+    for (int row = 0; row < 3; ++row)
+    {
+        for (int col = 0; col < 3; ++col)
+        {
+            int idx = row * 3 + col;
+            float cx = m_position.x + col * m_cellSize + m_cellSize * 0.5f;
+            float cy = m_position.y + row * m_cellSize + m_cellSize * 0.5f;
+
+            // quick circle hit: distance squared <= radius^2
+            float dx = worldPos.x - cx;
+            float dy = worldPos.y - cy;
+            if ((dx * dx + dy * dy) <= (radius * radius))
+            {
+                return { col, row };
+            }
+        }
+    }
+
+    return { -1, -1 };
 }

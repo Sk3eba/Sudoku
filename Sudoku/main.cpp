@@ -1,5 +1,5 @@
 ﻿#include <SFML/Graphics.hpp>
-#include "SudokuGrid.h"
+#include "Grid.h"
 #include "Numbers.h"
 
 int main()
@@ -8,9 +8,9 @@ int main()
     window.setFramerateLimit(60);
 
     // create grid on the left
-    SudokuGrid grid({ 20.f, 30.f }, 540.f);
+    Grid grid({ 20.f, 30.f }, 540.f);
 	sf::Font font("Roboto-Regular.ttf");
-    Numbers numbers({ 20.f + 540.f + 20.f, 30.f }, 120.f, font);
+    Numbers numbers({ 20.f + 540.f + 20.f, 30.f }, 205.f, font);
 
     sf::Vector2i selectedCell(-1, -1);
 
@@ -29,7 +29,15 @@ int main()
                     {
                         // convert the event pixel position to world coordinates
                         sf::Vector2f worldPos = window.mapPixelToCoords(mb->position);
+
                         sf::Vector2i cell = grid.cellAt(worldPos);
+                        if (cell.x >= 0 && cell.y >= 0)
+                        {
+                            selectedCell = cell;
+                            grid.selectCell(selectedCell);
+                        }
+
+                        numbers.selectAtPosition(worldPos);
                         if (cell.x >= 0) selectedCell = cell;
                     }
                 }
@@ -38,7 +46,7 @@ int main()
         }
 
         window.clear(sf::Color::White);
-        grid.selectCell(selectedCell);
+
 		grid.draw(window);
         numbers.draw(window);
 

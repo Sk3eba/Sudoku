@@ -156,11 +156,13 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Numbers.cpp" />
     <ClCompile Include="Sudoku.cpp" />
-    <ClCompile Include="SudokuGrid.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Grid.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Numbers.h" />
-    <ClInclude Include="SudokuGrid.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Grid.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
