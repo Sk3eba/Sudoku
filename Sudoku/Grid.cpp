@@ -57,7 +57,7 @@ void Grid::setPosition(sf::Vector2f position)
 
 sf::Vector2i Grid::cellAt(sf::Vector2f point){
     if (!m_background.getGlobalBounds().contains(point)) {
-        highlightRect.setSize({ 0.f, 0.f });
+        /*highlightRect.setSize({ 0.f, 0.f });*/
         return { -1, -1 };
     }
 		
@@ -92,5 +92,9 @@ void Grid::selectCell(sf::Vector2i cell) {
         highlightRect.setSize({ cellRect.size });
         highlightRect.setPosition({ cellRect.position });
         highlightRect.setFillColor(sf::Color(173, 216, 230, 160));
+    }
+    else
+    {
+		highlightRect.setSize({ 0.f, 0.f });
     }
 }

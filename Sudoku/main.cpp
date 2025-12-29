@@ -5,16 +5,27 @@
 #include "Game.h"
 #include "Solver.h"
 
-static void drawBoardNumbers(sf::RenderTarget& target, const Game& game, const Grid& grid, const sf::Font& font)
+static void drawBoardNumbers(sf::RenderTarget& target, const Game& game, const Grid& grid, const sf::Font& font, int selectedNumber)
 {
     for (int r = 0; r < 9; ++r)
     {
         for (int c = 0; c < 9; ++c)
         {
             int v = game.getCell({ c, r });
-            if (v <= 0) continue;
+            
 
             sf::FloatRect cellBounds = grid.getCellBounds({ c, r });
+
+            if (selectedNumber > 0 && v == selectedNumber)
+            {
+                sf::RectangleShape hl;
+                hl.setSize({ cellBounds.size});
+                hl.setPosition(cellBounds.position);
+                hl.setFillColor(sf::Color(173, 216, 230, 160));
+                target.draw(hl);
+            }
+
+            if (v <= 0) continue;
 
             sf::Text t(font);
             t.setString(std::to_string(v));
@@ -81,37 +92,97 @@ int main()
                         sf::Vector2f worldPos = window.mapPixelToCoords(mb->position);
 
                         sf::Vector2i cell = grid.cellAt(worldPos);
-                        numbers.selectAtPosition(worldPos);
-                        int selNum = numbers.getSelectedNumber();
+
+                        int selNumBefore = numbers.getSelectedNumber();
+
+                        if (!(cell.x >= 0 && cell.y >= 0))
+                            numbers.selectAtPosition(worldPos);
+                        int selNum = (cell.x >= 0 && cell.y >= 0) ? selNumBefore : numbers.getSelectedNumber();
+
+
+                        if (cell.x >= 0 && cell.y >= 0 && game.getCell(cell) != 0) {
+                            grid.selectCell({ -1, -1 });
+                            break;
+                        }
 
                         if (cell.x >= 0 && cell.y >= 0)
                         {
                             selectedCell = cell;
                             grid.selectCell(selectedCell);
-
+                            
                             if (selNum != -1)
                             {
                                 int flatIdx = selectedCell.y * 9 + selectedCell.x;
-                                if (solution[flatIdx] == selNum && game.isValidMove(selectedCell, selNum))
+                                if (solution[flatIdx] == selNum && game.isValidMove(selectedCell, selNum)) {
                                     game.setCell(selectedCell, selNum);
+                                 
+                                }
+                                 
                             }
                         }
                         else
                         {
                             // clicked outside grid (probably on numbers). If user clicked a number
                             // and there is a previously selected grid cell, place the number there.
+                            grid.selectCell({ -1, -1 });
                             if (selNum != -1 && selectedCell.x >= 0 && selectedCell.y >= 0)
                             {
                                 // require that the chosen number matches the precomputed solution
                                 int flatIdx = selectedCell.y * 9 + selectedCell.x;
-                                if (solution[flatIdx] == selNum && game.isValidMove(selectedCell, selNum))
+                                if (solution[flatIdx] == selNum && game.isValidMove(selectedCell, selNum)) {
                                     game.setCell(selectedCell, selNum);
+                                    selectedCell = { -1, -1 };
+                                    grid.selectCell(selectedCell);
+                                }
+                                    
                             }
+							selectedCell.x = -1;
+                            selectedCell.y = -1;
                         }
 
                     }
                 }
                 
+            }
+
+            if (event->is<sf::Event::KeyPressed>())
+            {
+                if (const auto* kp = event->getIf<sf::Event::KeyPressed>())
+                {
+                    int num = -1;
+                    switch (kp->code)
+                    {
+                    case sf::Keyboard::Key::Num1: case sf::Keyboard::Key::Numpad1: num = 1; break;
+                    case sf::Keyboard::Key::Num2: case sf::Keyboard::Key::Numpad2: num = 2; break;
+                    case sf::Keyboard::Key::Num3: case sf::Keyboard::Key::Numpad3: num = 3; break;
+                    case sf::Keyboard::Key::Num4: case sf::Keyboard::Key::Numpad4: num = 4; break;
+                    case sf::Keyboard::Key::Num5: case sf::Keyboard::Key::Numpad5: num = 5; break;
+                    case sf::Keyboard::Key::Num6: case sf::Keyboard::Key::Numpad6: num = 6; break;
+                    case sf::Keyboard::Key::Num7: case sf::Keyboard::Key::Numpad7: num = 7; break;
+                    case sf::Keyboard::Key::Num8: case sf::Keyboard::Key::Numpad8: num = 8; break;
+                    case sf::Keyboard::Key::Num9: case sf::Keyboard::Key::Numpad9: num = 9; break;
+                    default: break;
+                    }
+					grid.selectCell({ -1, -1 });
+                    if (num != -1)
+                    {
+                        // visually select the number in the Numbers UI
+                        int index = num - 1;
+                        numbers.setSelectedCell({ index % 3, index / 3 });
+
+                        // if a grid cell is selected, try placing the number (same rules as mouse)
+                        if (selectedCell.x >= 0 && selectedCell.y >= 0)
+                        {
+                            int flatIdx = selectedCell.y * 9 + selectedCell.x;
+                            if (solution[flatIdx] == num && game.isValidMove(selectedCell, num))
+                            {
+                                game.setCell(selectedCell, num);
+                                selectedCell = { -1, -1 };
+                                grid.selectCell(selectedCell);
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -119,7 +190,7 @@ int main()
 
 		grid.draw(window);
 
-		drawBoardNumbers(window, game, grid, font);
+		drawBoardNumbers(window, game, grid, font, numbers.getSelectedNumber());
 
         numbers.draw(window);
 

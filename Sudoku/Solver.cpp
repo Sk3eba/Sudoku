@@ -75,7 +75,7 @@ std::array<int, 81> Solver::generatePuzzle(int clues)
             ++removed;
         }
     }
-
+	
     return puzzle;
 }
 
