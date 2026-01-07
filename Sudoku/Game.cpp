@@ -149,3 +149,27 @@ int Game::indexFromCell(sf::Vector2i cell)
 {
     return cell.y * 9 + cell.x;
 }
+
+void Game::toggleCandidate(sf::Vector2i cell, int number)
+{
+    if (!inRangeCell(cell)) return;
+    if (number < 1 || number > 9) return;
+    int idx = indexFromCell(cell);
+    unsigned short bit = static_cast<unsigned short>(1u << number);
+    if (m_candidates[idx] & bit)
+        m_candidates[idx] &= static_cast<unsigned short>(~bit);
+    else
+        m_candidates[idx] |= bit;
+}
+
+unsigned short Game::getCandidatesMask(sf::Vector2i cell) const
+{
+    if (!inRangeCell(cell)) return 0;
+    return m_candidates[indexFromCell(cell)];
+}
+
+void Game::clearCandidates(sf::Vector2i cell)
+{
+    if (!inRangeCell(cell)) return;
+    m_candidates[indexFromCell(cell)] = 0;
+}

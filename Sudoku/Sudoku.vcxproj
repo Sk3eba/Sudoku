@@ -157,13 +157,17 @@
     <ClCompile Include="Numbers.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="RunGame.cpp" />
     <ClCompile Include="Solver.cpp" />
+    <ClCompile Include="ToolButtons.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Numbers.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="RunGame.h" />
     <ClInclude Include="Solver.h" />
+    <ClInclude Include="ToolButtons.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -37,8 +37,17 @@ public:
     // Access raw board as flat array (row-major).
     const std::array<int, 81>& rawBoard() const { return m_cells; }
 
+    // --- Pencil / candidate API (UI-only notes, do not affect solution)
+    // Toggle candidate number (1..9) for a cell. If already present it is removed.
+    void toggleCandidate(sf::Vector2i cell, int number);
+    // Get bitmask of candidates for a cell (bits 1..9).
+    unsigned short getCandidatesMask(sf::Vector2i cell) const;
+    // Clear all candidates for a cell.
+    void clearCandidates(sf::Vector2i cell);
+
 private:
     std::array<int, 81> m_cells;
+    std::array<unsigned short, 81> m_candidates;
 
     static bool inRangeCell(sf::Vector2i cell);
     static int indexFromCell(sf::Vector2i cell);
