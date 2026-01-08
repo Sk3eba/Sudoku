@@ -23,7 +23,6 @@ void ToolButtons::rebuildShapes()
         float offsetX = static_cast<float>(i) * (m_size + gap);
         sf::Vector2f center(m_position.x + offsetX + m_size * 0.5f, m_position.y + m_size * 0.5f);
 
-        // rectangle button (origin at center)
         sf::RectangleShape rect({ m_size, m_size });
         rect.setOrigin(sf::Vector2f(m_size * 0.5f, m_size * 0.5f));
         rect.setPosition(center);
@@ -33,7 +32,6 @@ void ToolButtons::rebuildShapes()
 
         m_buttons.push_back(rect);
 
-        // text for the button (constructed with font)
         sf::Text txt(m_font);
         txt.setString(i == 0 ? "R" : "P");
         unsigned int charSize = static_cast<unsigned int>(m_size * 0.55f);
@@ -93,7 +91,7 @@ void ToolButtons::selectAtPosition(sf::Vector2f worldPos)
     }
 }
 
-bool ToolButtons::consumeRestartPressed()
+bool ToolButtons::restartPressed()
 {
     if (m_restartPressed)
     {

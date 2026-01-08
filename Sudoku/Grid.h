@@ -8,10 +8,10 @@ class Grid
 public:
     Grid(sf::Vector2f position, float size);
 
-    // Draw grid to any sf::RenderTarget (window or render texture)
+    //draw grid to target
     void draw(sf::RenderTarget &target) const;
 
-    // Update grid top-left position (recomputes shapes)
+    //update grid top-left position
     void setPosition(sf::Vector2f position);
 
     sf::Vector2i cellAt(sf::Vector2f point);

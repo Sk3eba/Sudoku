@@ -8,7 +8,6 @@ Numbers::Numbers(sf::Vector2f position, float size, const sf::Font font)
     , m_cellSize(size / 3.f)
     , m_font(font)
 {
-    // initialize default numbers 1..9
     for (int i = 0; i < 9; ++i)
         m_numbers[i] = i + 1;
 
@@ -31,7 +30,6 @@ void Numbers::rebuildShapes()
         {
             int idx = row * 3 + col;
 
-            // compute center for this button
             float cx = m_position.x + col * m_cellSize + m_cellSize * 0.5f;
             float cy = m_position.y + row * m_cellSize + m_cellSize * 0.5f;
 			sf::Vector2f center(cx, cy);
@@ -40,7 +38,7 @@ void Numbers::rebuildShapes()
 			sf::Vector2f radiusVec(radius, radius);
             circle.setOrigin(radiusVec);
             circle.setPosition(center);
-            circle.setFillColor(sf::Color(230, 230, 230)); // light gray button
+            circle.setFillColor(sf::Color(230, 230, 230));
             circle.setOutlineColor(sf::Color::Black);
             circle.setOutlineThickness(1.f);
 
@@ -49,10 +47,8 @@ void Numbers::rebuildShapes()
             sf::Text txt(m_font);
 			const float size = std::max(8.f, radius * 1.1f);
             txt.setString(std::to_string(m_numbers[idx]));
-            // character size based on radius
             txt.setCharacterSize(size);
             txt.setFillColor(sf::Color::Black);
-            // center text origin
             sf::FloatRect tb = txt.getLocalBounds();
             txt.setOrigin(tb.getCenter());
             txt.setPosition(center);
@@ -71,14 +67,14 @@ void Numbers::updateButtonVisuals()
     {
         if (static_cast<int>(i) == m_selectedIndex)
         {
-            // selected appearance
+            //selected appearance
             m_buttons[i].setFillColor(sf::Color(100, 180, 255)); // bluish
             m_buttons[i].setOutlineColor(sf::Color(30, 90, 160));
             m_buttons[i].setOutlineThickness(2.f);
         }
         else
         {
-            // normal appearance
+            //normal appearance
             m_buttons[i].setFillColor(sf::Color(230, 230, 230));
             m_buttons[i].setOutlineColor(sf::Color::Black);
             m_buttons[i].setOutlineThickness(1.f);
@@ -94,11 +90,9 @@ void Numbers::setPosition(sf::Vector2f position)
 
 void Numbers::draw(sf::RenderTarget& target) const
 {
-    // draw buttons then text
     for (const auto& b : m_buttons)
         target.draw(b);
 
-    // draw texts (only drawn correctly if font was set by caller)
     for (const auto& t : m_texts)
         target.draw(t);
 }
@@ -114,7 +108,6 @@ void Numbers::setSelectedCell(sf::Vector2i cell)
         m_selectedIndex = cell.y * 3 + cell.x;
     }
 
-    // update visuals immediately
     updateButtonVisuals();
 }
 
@@ -152,7 +145,6 @@ sf::Vector2i Numbers::cellAtPosition(sf::Vector2f worldPos) const
             float cx = m_position.x + col * m_cellSize + m_cellSize * 0.5f;
             float cy = m_position.y + row * m_cellSize + m_cellSize * 0.5f;
 
-            // quick circle hit: distance squared <= radius^2
             float dx = worldPos.x - cx;
             float dy = worldPos.y - cy;
             if ((dx * dx + dy * dy) <= (radius * radius))

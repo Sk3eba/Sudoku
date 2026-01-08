@@ -8,16 +8,16 @@ class Numbers
 {
 public:
 	Numbers(sf::Vector2f position, float size, const sf::Font font);
-	// Draw numbers to any sf::RenderTarget (window or render texture)
+	//draw numbers to target
 	void draw(sf::RenderTarget &target) const;
-	// Update numbers top-left position (recomputes shapes)
+	//update numbers top-left position
 	void setPosition(sf::Vector2f position);
 
-	// selection API
-	void setSelectedCell(sf::Vector2i cell);            // select a cell (use {-1,-1} to clear)
+	//selection
+	void setSelectedCell(sf::Vector2i cell);            //select a cell (use {-1,-1} to clear)
 	sf::Vector2i getSelectedCell() const;
-	int getSelectedNumber() const;                       // -1 if none selected
-	// convenience: select by world position (e.g., mouse)
+	int getSelectedNumber() const;                       //-1 if none selected
+	//select by mouse position
 	void selectAtPosition(sf::Vector2f worldPos);
 private:
 	void rebuildShapes();

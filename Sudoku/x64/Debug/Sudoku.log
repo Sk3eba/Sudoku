@@ -1,4 +1,11 @@
-﻿  main.cpp
+﻿  Game.cpp
+  Grid.cpp
+  Numbers.cpp
+C:\Users\Sk3eba\Desktop\Studia\Studia\III semestr\C++\Sudoku\Sudoku\Numbers.cpp(50,34): warning C4244: 'argument': conversion from 'const float' to 'unsigned int', possible loss of data
+  RunGame.cpp
+  ToolButtons.cpp
+  main.cpp
+  Generating Code...
   Sudoku.vcxproj -> C:\Users\Sk3eba\Desktop\Studia\Studia\III semestr\C++\Sudoku\x64\Debug\Sudoku.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

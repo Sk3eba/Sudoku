@@ -32,7 +32,6 @@ void RunGame::drawBoardNumbers(sf::RenderTarget& target, const Game& game, const
 
             sf::Text t(font);
             t.setString(std::to_string(v));
-            // character size relative to cell height
             unsigned int charSize = static_cast<unsigned int>(cellBounds.size.y * 0.6f);
             t.setCharacterSize(charSize);
             t.setFillColor(sf::Color::Black);
@@ -56,7 +55,6 @@ void RunGame::runGame(int clues)
     music.setPitch(pitch);
     music.play();
 
-    // create grid on the left
     Grid grid({ 20.f, 30.f }, 540.f);
     sf::Font font("Roboto-Regular.ttf");
 
@@ -76,15 +74,13 @@ void RunGame::runGame(int clues)
     okSprite.setPosition(okPosition);
 
     Game game;
+    game.clear();
 
-    // generate puzzle with desired number of clues (e.g., 30)
     std::array<int, 81> puzzle = Solver::generatePuzzle(clues);
 
-    // solve puzzle to obtain authoritative solution (should be unique)
     std::array<int, 81> solution;
     Solver::solve(puzzle, solution);
 
-    game.clear();
     for (int i = 0; i < 81; ++i)
     {
         if (puzzle[i] != 0)
@@ -96,13 +92,12 @@ void RunGame::runGame(int clues)
 
 
     sf::Vector2i selectedCell(-1, -1);
+    
 
     while (window.isOpen())
     {
-        // simple render loop (only handle window close so the window stays responsive)
         while (const std::optional event = window.pollEvent())
         {
-            // "close requested" event: we close the window
             if (event->is<sf::Event::Closed>())
                 window.close();
             if (event->is<sf::Event::MouseButtonPressed>())
@@ -116,9 +111,8 @@ void RunGame::runGame(int clues)
                         sf::Vector2f worldPos = window.mapPixelToCoords(mb->position);
 
                         tools.selectAtPosition(worldPos);
-                        if (tools.consumeRestartPressed())
+                        if (tools.restartPressed())
                         {
-                            // regenerate puzzle and reset game
                             puzzle = Solver::generatePuzzle(clues);
                             Solver::solve(puzzle, solution);
                             game.clear();
@@ -130,13 +124,11 @@ void RunGame::runGame(int clues)
                                     game.setCell(cell, puzzle[i]);
                                 }
                             }
-                            // clear selection state
                             selectedCell = { -1, -1 };
                             grid.selectCell(selectedCell);
-                            // reset music pitch to default
                             pitch = 1.f;
                             music.setPitch(pitch);
-                            continue; // ignore other click handling for this event
+                            continue;
                         }
 
                         sf::Vector2i cell = grid.cellAt(worldPos);
@@ -182,12 +174,9 @@ void RunGame::runGame(int clues)
                         }
                         else
                         {
-                            // clicked outside grid (probably on numbers). If user clicked a number
-                            // and there is a previously selected grid cell, place the number there.
                             grid.selectCell({ -1, -1 });
                             if (!pencilMode && selNum != -1 && selectedCell.x >= 0 && selectedCell.y >= 0)
                             {
-                                // require that the chosen number matches the precomputed solution
                                 int flatIdx = selectedCell.y * 9 + selectedCell.x;
                                 if (solution[flatIdx] == selNum && game.isValidMove(selectedCell, selNum)) {
                                     game.setCell(selectedCell, selNum);
@@ -226,11 +215,9 @@ void RunGame::runGame(int clues)
                     grid.selectCell({ -1, -1 });
                     if (num != -1)
                     {
-                        // visually select the number in the Numbers UI
                         int index = num - 1;
                         numbers.setSelectedCell({ index % 3, index / 3 });
 
-                        // if a grid cell is selected, try placing the number (same rules as mouse)
                         if (!tools.isPencilActive() && selectedCell.x >= 0 && selectedCell.y >= 0)
                         {
                             int flatIdx = selectedCell.y * 9 + selectedCell.x;

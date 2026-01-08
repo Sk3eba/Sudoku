@@ -1,5 +1,4 @@
 #include "Game.h"
-#include <cstring> // for std::memset
 
 Game::Game()
 {
@@ -14,7 +13,7 @@ void Game::clear()
 bool Game::setCell(sf::Vector2i cell, int value)
 {
     if (!inRangeCell(cell)) return false;
-    if (value < 0 || value > 9) return false; // 0..9 allowed (0 = empty)
+    if (value < 0 || value > 9) return false;
     m_cells[indexFromCell(cell)] = value;
     return true;
 }
@@ -30,10 +29,8 @@ bool Game::isValidMove(sf::Vector2i cell, int value) const
     if (!inRangeCell(cell)) return false;
     if (value < 0 || value > 9) return false;
 
-    // clearing is always valid
     if (value == 0) return true;
 
-    // check row
     int row = cell.y;
     for (int c = 0; c < 9; ++c)
     {
@@ -42,7 +39,6 @@ bool Game::isValidMove(sf::Vector2i cell, int value) const
         if (v == value) return false;
     }
 
-    // check column
     int col = cell.x;
     for (int r = 0; r < 9; ++r)
     {
@@ -51,7 +47,6 @@ bool Game::isValidMove(sf::Vector2i cell, int value) const
         if (v == value) return false;
     }
 
-    // check 3x3 block
     int blockRow = (row / 3) * 3;
     int blockCol = (col / 3) * 3;
     for (int r = 0; r < 3; ++r)
@@ -115,15 +110,12 @@ bool Game::checkBlockValid(int blockRow, int blockCol) const
 
 bool Game::isBoardValid() const
 {
-    // rows
     for (int r = 0; r < 9; ++r)
         if (!checkRowValid(r)) return false;
 
-    // cols
     for (int c = 0; c < 9; ++c)
         if (!checkColValid(c)) return false;
 
-    // blocks (3x3)
     for (int br = 0; br < 3; ++br)
         for (int bc = 0; bc < 3; ++bc)
             if (!checkBlockValid(br, bc)) return false;
@@ -133,7 +125,6 @@ bool Game::isBoardValid() const
 
 bool Game::isSolved() const
 {
-    // must be full and valid
     for (int i = 0; i < 81; ++i)
         if (m_cells[i] == 0) return false;
 

@@ -24,14 +24,12 @@ void Grid::rebuildShapes()
         const bool thick = (i % 3 == 0);
         const float thickness = thick ? 3.f : 1.f;
 
-        // vertical
         sf::RectangleShape vline({ thickness, m_size });
         float vx = m_position.x + i * m_cellSize - thickness / 2.f;
         vline.setPosition({ vx, m_position.y });
         vline.setFillColor(sf::Color::Black);
         m_lines.push_back(vline);
 
-        // horizontal
         sf::RectangleShape hline({ m_size, thickness });
         float hy = m_position.y + i * m_cellSize - thickness / 2.f;
         hline.setPosition({ m_position.x, hy });
@@ -57,7 +55,6 @@ void Grid::setPosition(sf::Vector2f position)
 
 sf::Vector2i Grid::cellAt(sf::Vector2f point){
     if (!m_background.getGlobalBounds().contains(point)) {
-        /*highlightRect.setSize({ 0.f, 0.f });*/
         return { -1, -1 };
     }
 		
@@ -72,7 +69,7 @@ sf::Vector2i Grid::cellAt(sf::Vector2f point){
 sf::FloatRect Grid::getCellBounds(sf::Vector2i cell) const
 {
     if (cell.x < 0 || cell.x > 8 || cell.y < 0 || cell.y > 8)
-        return sf::FloatRect(); // empty
+        return sf::FloatRect();
 
     sf::Vector2f localPos(m_position.x + cell.x * m_cellSize,
         m_position.y + cell.y * m_cellSize);

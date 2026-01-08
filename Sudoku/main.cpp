@@ -3,7 +3,7 @@
 int main()
 {
     RunGame runGameInstance;
-    //clues
-    runGameInstance.runGame(50);
+    //cells solved at start
+    runGameInstance.runGame(55);
     return 0;
 }
