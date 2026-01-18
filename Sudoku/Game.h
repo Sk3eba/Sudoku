@@ -31,13 +31,13 @@ public:
 
     void toggleCandidate(sf::Vector2i cell, int number);
 
-    unsigned short getCandidatesMask(sf::Vector2i cell) const;
+    bool hasCandidate(sf::Vector2i cell, int number) const;
 
     void clearCandidates(sf::Vector2i cell);
 
 private:
     std::array<int, 81> m_cells;
-    std::array<unsigned short, 81> m_candidates;
+    std::array<std::array<bool, 10>, 81> m_candidates;
 
     static bool inRangeCell(sf::Vector2i cell);
     static int indexFromCell(sf::Vector2i cell);

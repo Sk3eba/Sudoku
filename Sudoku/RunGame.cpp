@@ -43,19 +43,49 @@ void RunGame::drawBoardNumbers(sf::RenderTarget& target, const Game& game, const
                 target.draw(wrong);
             }
 
-            if (v < 0) continue;
+            if (v > 0) {
+                sf::Text t(font);
+                t.setString(std::to_string(v));
+                unsigned int charSize = static_cast<unsigned int>(cellBounds.size.y * 0.6f);
+                t.setCharacterSize(v == 0 ? 0 : charSize);
+                t.setFillColor(sf::Color::Black);
 
-            sf::Text t(font);
-            t.setString(std::to_string(v));
-            unsigned int charSize = static_cast<unsigned int>(cellBounds.size.y * 0.6f);
-            t.setCharacterSize(v == 0 ? 0 : charSize);
-            t.setFillColor(sf::Color::Black);
+                sf::FloatRect tb = t.getLocalBounds();
+                t.setOrigin(tb.getCenter());
+                t.setPosition(cellBounds.getCenter());
 
-            sf::FloatRect tb = t.getLocalBounds();
-            t.setOrigin(tb.getCenter());
-            t.setPosition(cellBounds.getCenter());
+                target.draw(t);
+            }
+            else
+            {
+                // Draw pencil marks for empty cells
+                unsigned int smallCharSize = static_cast<unsigned int>(cellBounds.size.y * 0.2f);
+                float cellW = cellBounds.size.x / 3.0f;
+                float cellH = cellBounds.size.y / 3.0f;
 
-            target.draw(t);
+                for (int num = 1; num <= 9; ++num)
+                {
+                    if (game.hasCandidate({ c, r }, num))
+                    {
+                        int gridX = (num - 1) % 3;
+                        int gridY = (num - 1) / 3;
+
+                        sf::Text pencilText(font);
+                        pencilText.setString(std::to_string(num));
+                        pencilText.setCharacterSize(smallCharSize);
+                        pencilText.setFillColor(sf::Color(100, 100, 100));
+
+                        sf::FloatRect pencilBounds = pencilText.getLocalBounds();
+                        pencilText.setOrigin(pencilBounds.getCenter());
+
+                        float posX = cellBounds.position.x + cellW * gridX + cellW * 0.5f;
+                        float posY = cellBounds.position.y + cellH * gridY + cellH * 0.5f;
+                        pencilText.setPosition({ posX, posY });
+
+                        target.draw(pencilText);
+                    }
+                }
+            }
         }
     }
 }
@@ -160,7 +190,16 @@ void RunGame::runGame(int clues)
 
                             if (selNum != -1)
                             {
-                                game.setCell(selectedCell, selNum);
+                                if (pencilMode)
+                                {
+                                    game.toggleCandidate(selectedCell, selNum);
+                                }
+                                else
+                                {
+                                    game.setCell(selectedCell, selNum);
+                                    game.clearCandidates(selectedCell);
+                                }
+                                
                             }
                             
                         }
@@ -210,11 +249,22 @@ void RunGame::runGame(int clues)
                         int index = num - 1;
                         numbers.setSelectedCell({ index % 3, index / 3 });
 
-                        if (!tools.isPencilActive() && selectedCell.x >= 0 && selectedCell.y >= 0)
+                        if (selectedCell.x >= 0 && selectedCell.y >= 0)
                         {
-                            game.setCell(selectedCell, num);
+                            bool pencilMode = tools.isPencilActive();
+
+                            if (pencilMode)
+                            {
+                                game.toggleCandidate(selectedCell, num);
+                            }
+                            else
+                            {
+                                game.setCell(selectedCell, num);
+                                game.clearCandidates(selectedCell);
+                            }
                             selectedCell = { -1, -1 };
                             grid.selectCell(selectedCell);
+                            numbers.setSelectedCell({ -1, -1 });
                         }
                     }
                 }

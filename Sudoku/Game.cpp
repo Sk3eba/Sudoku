@@ -8,6 +8,10 @@ Game::Game()
 void Game::clear()
 {
     m_cells.fill(0);
+    for (auto& cellCandidates : m_candidates)
+    {
+        cellCandidates.fill(false);
+    }
 }
 
 bool Game::setCell(sf::Vector2i cell, int value)
@@ -146,22 +150,23 @@ void Game::toggleCandidate(sf::Vector2i cell, int number)
 {
     if (!inRangeCell(cell)) return;
     if (number < 1 || number > 9) return;
+
     int idx = indexFromCell(cell);
-    unsigned short bit = static_cast<unsigned short>(1u << number);
-    if (m_candidates[idx] & bit)
-        m_candidates[idx] &= static_cast<unsigned short>(~bit);
-    else
-        m_candidates[idx] |= bit;
+
+    m_candidates[idx][number] = !m_candidates[idx][number];
 }
 
-unsigned short Game::getCandidatesMask(sf::Vector2i cell) const
+bool Game::hasCandidate(sf::Vector2i cell, int number) const
 {
-    if (!inRangeCell(cell)) return 0;
-    return m_candidates[indexFromCell(cell)];
+    if (!inRangeCell(cell)) return false;
+    if (number < 1 || number > 9) return false;
+
+    int idx = indexFromCell(cell);
+    return m_candidates[idx][number];
 }
 
 void Game::clearCandidates(sf::Vector2i cell)
 {
     if (!inRangeCell(cell)) return;
-    m_candidates[indexFromCell(cell)] = 0;
+    m_candidates[indexFromCell(cell)].fill(false);
 }
