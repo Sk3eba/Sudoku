@@ -58,7 +58,6 @@ sf::Vector2i Grid::cellAt(sf::Vector2f point){
         return { -1, -1 };
     }
 		
-
     sf::Vector2f localPos = point - m_position;
 	int col = static_cast<int>(localPos.x / m_cellSize);
 	int row = static_cast<int>(localPos.y / m_cellSize);

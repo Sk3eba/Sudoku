@@ -45,7 +45,7 @@ std::array<int, 81> Solver::generatePuzzle(int clues)
 
 	//rng for shuffling
     std::mt19937 rng(static_cast<unsigned int>(
-        std::chrono::high_resolution_clock::now().time_since_epoch().count()));
+    std::chrono::high_resolution_clock::now().time_since_epoch().count()));
     std::shuffle(indices.begin(), indices.end(), rng);
 
     int keep = clues;

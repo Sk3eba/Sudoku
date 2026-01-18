@@ -8,7 +8,7 @@
 class RunGame
 {
 public:
-	void drawBoardNumbers(sf::RenderTarget& target, const Game& game, const Grid& grid, const sf::Font& font, int selectedNumber);
+	void drawBoardNumbers(sf::RenderTarget& target, const Game& game, const Grid& grid, const sf::Font& font, int selectedNumber, std::array<int, 81> puzzle);
 	void runGame(int clues);
 };
 

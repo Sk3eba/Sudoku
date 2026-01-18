@@ -14,7 +14,8 @@ bool Game::setCell(sf::Vector2i cell, int value)
 {
     if (!inRangeCell(cell)) return false;
     if (value < 0 || value > 9) return false;
-    m_cells[indexFromCell(cell)] = value;
+    if (getCell(cell) != value) m_cells[indexFromCell(cell)] = value;
+    else m_cells[indexFromCell(cell)] = 0;
     return true;
 }
 

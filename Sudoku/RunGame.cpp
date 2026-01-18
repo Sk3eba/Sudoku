@@ -8,7 +8,7 @@
 #include "ToolButtons.h"
 #include <SFML/Audio.hpp>
 
-void RunGame::drawBoardNumbers(sf::RenderTarget& target, const Game& game, const Grid& grid, const sf::Font& font, int selectedNumber)
+void RunGame::drawBoardNumbers(sf::RenderTarget& target, const Game& game, const Grid& grid, const sf::Font& font, int selectedNumber, std::array<int, 81> puzzle)
 {
     for (int r = 0; r < 9; ++r)
     {
@@ -18,8 +18,15 @@ void RunGame::drawBoardNumbers(sf::RenderTarget& target, const Game& game, const
 
 
             sf::FloatRect cellBounds = grid.getCellBounds({ c, r });
-
-            if (selectedNumber > 0 && v == selectedNumber)
+            if (puzzle[r * 9 + c] != 0)
+            {
+                sf::RectangleShape hl;
+                hl.setSize({ cellBounds.size });
+                hl.setPosition(cellBounds.position);
+                hl.setFillColor(sf::Color(0, 0, 0, 30));
+                target.draw(hl);
+            }
+            if (selectedNumber > 0 && v == selectedNumber && (game.isValidMove({ c, r }, v) || puzzle[r * 9 + c] != 0))
             {
                 sf::RectangleShape hl;
                 hl.setSize({ cellBounds.size });
@@ -28,12 +35,20 @@ void RunGame::drawBoardNumbers(sf::RenderTarget& target, const Game& game, const
                 target.draw(hl);
             }
 
-            if (v <= 0) continue;
+            if (!game.isValidMove({ c, r }, v) && puzzle[r * 9 +c] == 0) {
+                sf::RectangleShape wrong;
+                wrong.setSize({ cellBounds.size });
+                wrong.setPosition(cellBounds.position);
+                wrong.setFillColor(sf::Color(233, 49, 54, 211));
+                target.draw(wrong);
+            }
+
+            if (v < 0) continue;
 
             sf::Text t(font);
             t.setString(std::to_string(v));
             unsigned int charSize = static_cast<unsigned int>(cellBounds.size.y * 0.6f);
-            t.setCharacterSize(charSize);
+            t.setCharacterSize(v == 0 ? 0 : charSize);
             t.setFillColor(sf::Color::Black);
 
             sf::FloatRect tb = t.getLocalBounds();
@@ -49,11 +64,6 @@ void RunGame::runGame(int clues)
 {
     sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "Sudoku");
     window.setFramerateLimit(60);
-    sf::Music music("music.wav");
-    music.setVolume(0.f);
-    float pitch = 1.f;
-    music.setPitch(pitch);
-    music.play();
 
     Grid grid({ 20.f, 30.f }, 540.f);
     sf::Font font("Roboto-Regular.ttf");
@@ -105,8 +115,6 @@ void RunGame::runGame(int clues)
                 if (const auto* mb = event->getIf<sf::Event::MouseButtonPressed>()) {
                     if (mb->button == sf::Mouse::Button::Left)
                     {
-
-
                         // convert the event pixel position to world coordinates
                         sf::Vector2f worldPos = window.mapPixelToCoords(mb->position);
 
@@ -126,8 +134,6 @@ void RunGame::runGame(int clues)
                             }
                             selectedCell = { -1, -1 };
                             grid.selectCell(selectedCell);
-                            pitch = 1.f;
-                            music.setPitch(pitch);
                             continue;
                         }
 
@@ -135,14 +141,12 @@ void RunGame::runGame(int clues)
 
                         int selNumBefore = numbers.getSelectedNumber();
 
-
-
                         if (!(cell.x >= 0 && cell.y >= 0))
                             numbers.selectAtPosition(worldPos);
                         int selNum = (cell.x >= 0 && cell.y >= 0) ? selNumBefore : numbers.getSelectedNumber();
 
 
-                        if (cell.x >= 0 && cell.y >= 0 && game.getCell(cell) != 0) {
+                        if (cell.x >= 0 && cell.y >= 0 && puzzle[cell.y*9+cell.x] != 0) {
                             grid.selectCell({ -1, -1 });
                             break;
                         }
@@ -156,39 +160,27 @@ void RunGame::runGame(int clues)
 
                             if (selNum != -1)
                             {
-                                int flatIdx = selectedCell.y * 9 + selectedCell.x;
-                                if (solution[flatIdx] == selNum && game.isValidMove(selectedCell, selNum)) {
-                                    game.setCell(selectedCell, selNum);
-                                    pitch = 1.f;
-                                    music.setPitch(pitch);
-                                }
-                                else {
-                                    if (pitch >= 0.2f) {
-                                        pitch -= 0.1f;
-                                        music.setPitch(pitch);
-                                    }
-
-                                }
-
+                                game.setCell(selectedCell, selNum);
                             }
+                            
                         }
                         else
                         {
                             grid.selectCell({ -1, -1 });
                             if (!pencilMode && selNum != -1 && selectedCell.x >= 0 && selectedCell.y >= 0)
                             {
-                                int flatIdx = selectedCell.y * 9 + selectedCell.x;
-                                if (solution[flatIdx] == selNum && game.isValidMove(selectedCell, selNum)) {
-                                    game.setCell(selectedCell, selNum);
-                                    selectedCell = { -1, -1 };
-                                    grid.selectCell(selectedCell);
-                                }
-
+                                game.setCell(selectedCell, selNum);
+                                selectedCell = { -1, -1 };
+                                grid.selectCell(selectedCell);
                             }
+                            
+                        }
+                        if (numbers.getSelectedNumber() > 0) {
                             selectedCell.x = -1;
                             selectedCell.y = -1;
+                            grid.selectCell(selectedCell);
                         }
-
+                        
                     }
                 }
 
@@ -220,13 +212,9 @@ void RunGame::runGame(int clues)
 
                         if (!tools.isPencilActive() && selectedCell.x >= 0 && selectedCell.y >= 0)
                         {
-                            int flatIdx = selectedCell.y * 9 + selectedCell.x;
-                            if (solution[flatIdx] == num && game.isValidMove(selectedCell, num))
-                            {
-                                game.setCell(selectedCell, num);
-                                selectedCell = { -1, -1 };
-                                grid.selectCell(selectedCell);
-                            }
+                            game.setCell(selectedCell, num);
+                            selectedCell = { -1, -1 };
+                            grid.selectCell(selectedCell);
                         }
                     }
                 }
@@ -237,7 +225,7 @@ void RunGame::runGame(int clues)
 
         grid.draw(window);
 
-        drawBoardNumbers(window, game, grid, font, numbers.getSelectedNumber());
+        drawBoardNumbers(window, game, grid, font, numbers.getSelectedNumber(), puzzle);
 
         if (game.isSolved() && okTexture.getSize().x > 0)
         {

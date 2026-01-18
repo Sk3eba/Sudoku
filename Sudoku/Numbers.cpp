@@ -105,7 +105,10 @@ void Numbers::setSelectedCell(sf::Vector2i cell)
     }
     else
     {
-        m_selectedIndex = cell.y * 3 + cell.x;
+        if (m_selectedIndex == cell.y * 3 + cell.x) {
+            m_selectedIndex = -1;
+        }
+        else m_selectedIndex = cell.y * 3 + cell.x;
     }
 
     updateButtonVisuals();
