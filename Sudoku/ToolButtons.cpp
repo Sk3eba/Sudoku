@@ -15,10 +15,10 @@ void ToolButtons::rebuildShapes()
 
     m_buttons.clear();
     m_texts.clear();
-    m_buttons.reserve(2);
-    m_texts.reserve(2);
+    m_buttons.reserve(3);
+    m_texts.reserve(3);
 
-    for (int i = 0; i < 2; ++i)
+    for (int i = 0; i < 3; ++i)
     {
         float offsetX = static_cast<float>(i) * (m_size + gap);
         sf::Vector2f center(m_position.x + offsetX + m_size * 0.5f, m_position.y + m_size * 0.5f);
@@ -33,7 +33,7 @@ void ToolButtons::rebuildShapes()
         m_buttons.push_back(rect);
 
         sf::Text txt(m_font);
-        txt.setString(i == 0 ? "R" : "P");
+        txt.setString(i == 0 ? "R" : (i == 1 ? "P" : "V"));
         unsigned int charSize = static_cast<unsigned int>(m_size * 0.55f);
         txt.setCharacterSize(charSize);
         txt.setFillColor(sf::Color::Black);
@@ -62,6 +62,19 @@ void ToolButtons::updateVisuals()
         m_buttons[1].setFillColor(sf::Color(230, 230, 230));
         m_buttons[1].setOutlineColor(sf::Color(100, 100, 100));
     }
+    if (m_buttons.size() >= 3)
+    {
+        if (m_validationActive)
+        {
+            m_buttons[2].setFillColor(sf::Color(200, 220, 255));
+            m_buttons[2].setOutlineColor(sf::Color(50, 120, 200));
+        }
+        else
+        {
+            m_buttons[2].setFillColor(sf::Color(230, 230, 230));
+            m_buttons[2].setOutlineColor(sf::Color(100, 100, 100));
+        }
+    }
 }
 
 void ToolButtons::draw(sf::RenderTarget& target) const
@@ -88,6 +101,13 @@ void ToolButtons::selectAtPosition(sf::Vector2f worldPos)
     {
         m_pencilActive = !m_pencilActive;
         updateVisuals();
+        return;
+    }
+
+    if (m_buttons.size() >= 3 && m_buttons[2].getGlobalBounds().contains(worldPos))
+    {
+        m_validationActive = !m_validationActive;
+        updateVisuals();
     }
 }
 
@@ -101,7 +121,25 @@ bool ToolButtons::restartPressed()
     return false;
 }
 
+bool ToolButtons::isValidationActive() const
+{
+    return m_validationActive;
+}
+
+void ToolButtons::toggleValidation()
+{
+    m_validationActive = !m_validationActive;
+    updateVisuals();
+}
+
 bool ToolButtons::isPencilActive() const
 {
+    return m_pencilActive;
+}
+
+bool ToolButtons::togglePencil()
+{
+    m_pencilActive = !m_pencilActive;
+    updateVisuals();
     return m_pencilActive;
 }

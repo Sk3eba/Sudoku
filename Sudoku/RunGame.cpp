@@ -8,7 +8,7 @@
 #include "ToolButtons.h"
 #include <SFML/Audio.hpp>
 
-void RunGame::drawBoardNumbers(sf::RenderTarget& target, const Game& game, const Grid& grid, const sf::Font& font, int selectedNumber, std::array<int, 81> puzzle)
+void RunGame::drawBoardNumbers(sf::RenderTarget& target, const Game& game, const Grid& grid, const sf::Font& font, int selectedNumber, std::array<int, 81> puzzle, std::array<int, 81> solution, bool showValidation)
 {
     for (int r = 0; r < 9; ++r)
     {
@@ -33,6 +33,19 @@ void RunGame::drawBoardNumbers(sf::RenderTarget& target, const Game& game, const
                 hl.setPosition(cellBounds.position);
                 hl.setFillColor(sf::Color(173, 216, 230, 160));
                 target.draw(hl);
+            }
+
+            if (showValidation && v != 0 && puzzle[r * 9 + c] == 0)
+            {
+                int flatIdx = r * 9 + c;
+                if (v != solution[flatIdx])
+                {
+                    sf::RectangleShape wrong;
+                    wrong.setSize({ cellBounds.size });
+                    wrong.setPosition(cellBounds.position);
+                    wrong.setFillColor(sf::Color(233, 49, 54, 211));
+                    target.draw(wrong);
+                }
             }
 
             if (!game.isValidMove({ c, r }, v) && puzzle[r * 9 +c] == 0) {
@@ -132,8 +145,8 @@ void RunGame::runGame(int clues)
 
 
     sf::Vector2i selectedCell(-1, -1);
+    bool showValidation = false;
     
-
     while (window.isOpen())
     {
         while (const std::optional event = window.pollEvent())
@@ -166,6 +179,8 @@ void RunGame::runGame(int clues)
                             grid.selectCell(selectedCell);
                             continue;
                         }
+
+                        showValidation = tools.isValidationActive();
 
                         sf::Vector2i cell = grid.cellAt(worldPos);
 
@@ -241,6 +256,13 @@ void RunGame::runGame(int clues)
                     case sf::Keyboard::Key::Num7: case sf::Keyboard::Key::Numpad7: num = 7; break;
                     case sf::Keyboard::Key::Num8: case sf::Keyboard::Key::Numpad8: num = 8; break;
                     case sf::Keyboard::Key::Num9: case sf::Keyboard::Key::Numpad9: num = 9; break;
+                    case sf::Keyboard::Key::V:
+                        tools.toggleValidation();
+                        showValidation = tools.isValidationActive();
+                        break;
+                    case sf::Keyboard::Key::P:
+                        tools.togglePencil();
+						break;
                     default: break;
                     }
                     grid.selectCell({ -1, -1 });
@@ -275,7 +297,7 @@ void RunGame::runGame(int clues)
 
         grid.draw(window);
 
-        drawBoardNumbers(window, game, grid, font, numbers.getSelectedNumber(), puzzle);
+        drawBoardNumbers(window, game, grid, font, numbers.getSelectedNumber(), puzzle, solution, showValidation);
 
         if (game.isSolved() && okTexture.getSize().x > 0)
         {

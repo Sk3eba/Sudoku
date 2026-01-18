@@ -15,7 +15,11 @@ public:
 
     bool restartPressed();
 
+    bool isValidationActive() const;
+    void toggleValidation();
+
     bool isPencilActive() const;
+    bool togglePencil();
 
 private:
     void rebuildShapes();
@@ -30,6 +34,7 @@ private:
 
     bool m_pencilActive = false;
     bool m_restartPressed = false;
+    bool m_validationActive = false;
 };
 
 
