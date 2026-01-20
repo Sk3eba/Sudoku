@@ -11,14 +11,14 @@ ToolButtons::ToolButtons(sf::Vector2f position, float size, const sf::Font & fon
 
 void ToolButtons::rebuildShapes()
 {
-    const float gap = m_size * 0.2f;
+    const float gap = m_size * 0.15f;
 
     m_buttons.clear();
     m_texts.clear();
-    m_buttons.reserve(3);
-    m_texts.reserve(3);
+    m_buttons.reserve(4);
+    m_texts.reserve(4);
 
-    for (int i = 0; i < 3; ++i)
+    for (int i = 0; i < 4; ++i)
     {
         float offsetX = static_cast<float>(i) * (m_size + gap);
         sf::Vector2f center(m_position.x + offsetX + m_size * 0.5f, m_position.y + m_size * 0.5f);
@@ -33,7 +33,7 @@ void ToolButtons::rebuildShapes()
         m_buttons.push_back(rect);
 
         sf::Text txt(m_font);
-        txt.setString(i == 0 ? "R" : (i == 1 ? "P" : "V"));
+        txt.setString(i == 0 ? "R" : (i == 1 ? "P" : (i == 2 ? "V" : "S")));
         unsigned int charSize = static_cast<unsigned int>(m_size * 0.55f);
         txt.setCharacterSize(charSize);
         txt.setFillColor(sf::Color::Black);
@@ -109,6 +109,11 @@ void ToolButtons::selectAtPosition(sf::Vector2f worldPos)
         m_validationActive = !m_validationActive;
         updateVisuals();
     }
+    if (m_buttons.size() >= 4 && m_buttons[3].getGlobalBounds().contains(worldPos))
+    {
+        m_solvePressed = true;
+        return;
+    }
 }
 
 bool ToolButtons::restartPressed()
@@ -142,4 +147,14 @@ bool ToolButtons::togglePencil()
     m_pencilActive = !m_pencilActive;
     updateVisuals();
     return m_pencilActive;
+}
+
+bool ToolButtons::solvePressed()
+{
+    if (m_solvePressed)
+    {
+        m_solvePressed = false;
+        return true;
+    }
+    return false;
 }

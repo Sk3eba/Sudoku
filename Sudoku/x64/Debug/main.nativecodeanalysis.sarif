@@ -1,0 +1,683 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "MSVC Code Analysis",
+          "version": "14.44.35222.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/sudoku/main.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "6d5e14552a8c897829e40a31feb6657af52cf729dfeed185ba5c59a7d91a7c33"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/sudoku/rungame.h"
+          },
+          "hashes": {
+            "sha-256": "f42424afa9979b0fda9e8a627e16de6d5c3e3f7e3ea17cabc6d60947ae815045"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/system.hpp"
+          },
+          "hashes": {
+            "sha-256": "668c81f676b0a8d1e8e62ffd1a9f1a1d2eb00b93485a9fe8998ec6097a8b4765"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/config.hpp"
+          },
+          "hashes": {
+            "sha-256": "5940d5b07bd7010de838bcc7a61e36e1bffb0060b140500217fe7dda3f482fed"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/system/angle.hpp"
+          },
+          "hashes": {
+            "sha-256": "ad9c70a225b250934578e7876d4cb1c3123a2b95a892e51bb694b18d38bb60bf"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/system/angle.inl"
+          },
+          "hashes": {
+            "sha-256": "293e8686412da732a7013f73cf5e9f91bcee17d0a79bb5ed702e95dcb9892a2b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/system/clock.hpp"
+          },
+          "hashes": {
+            "sha-256": "904444aa303a68f745f55359b7bf2a5fbd0ff0d855bb533ba05dda5e7c9d924d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/system/export.hpp"
+          },
+          "hashes": {
+            "sha-256": "96c5077f932c9488ec1a67a278f2e7351bfab2793f8f7dd89e840616e30365a4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/system/err.hpp"
+          },
+          "hashes": {
+            "sha-256": "2973653eb303f7cecc72b6f8c75ef19026308253f9ede40c825f5241662a5743"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/system/exception.hpp"
+          },
+          "hashes": {
+            "sha-256": "ef8a4c28a4987b5b8045c9dcf19b7f4226f25d886f8bb45be0702badc4d0225d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/system/fileinputstream.hpp"
+          },
+          "hashes": {
+            "sha-256": "0e535873cd6c3cbc1a869aff7f0fc33af63d00633b9f6d4072e0d334fe766d5e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/system/inputstream.hpp"
+          },
+          "hashes": {
+            "sha-256": "eb23715da35ab2dfd598d87cb01f95db6acaf08d35edb0ca6566a9060b3d8b72"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/system/memoryinputstream.hpp"
+          },
+          "hashes": {
+            "sha-256": "fd37c5ffb7ee36daaf1460a5658d2777588c9e67de6acc555af928906f6fc8d5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/system/sleep.hpp"
+          },
+          "hashes": {
+            "sha-256": "33338b2de47aa203514f28f96dbec1c8e9ed4e554b306d4235f7300b6672f680"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/system/string.hpp"
+          },
+          "hashes": {
+            "sha-256": "7d453a16f6b850fe6cbd5b5365df11bdacb8d66716b4819e07b901f1f028abca"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/system/utf.hpp"
+          },
+          "hashes": {
+            "sha-256": "940f9bce5d4e38e0fe27bb3d22daf5f1eca55cae4baea640aafd7a702a75f609"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/system/utf.inl"
+          },
+          "hashes": {
+            "sha-256": "3607c2d723349682e4cb7b715940651729c51ad84aa993546e954fac48a336e1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/system/string.inl"
+          },
+          "hashes": {
+            "sha-256": "8ef312bcf6e54cd8c0751f8dd466ef259f3fa47f77cde0dd18501711fd27c757"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/system/time.hpp"
+          },
+          "hashes": {
+            "sha-256": "2d9d8ceb1e3d69e08f0196c5587c6e5b51cad8d02310a9b5b8e1c25b2462022b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/system/time.inl"
+          },
+          "hashes": {
+            "sha-256": "03cbfb6e84e1e996b42e18fc10c8ae4930af908a48f417692b77ba0982c99097"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/system/vector2.hpp"
+          },
+          "hashes": {
+            "sha-256": "af1c12e0114122094e3fc02c20c87d115058f6bde2de9b24cb412271eadcd57c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/system/vector2.inl"
+          },
+          "hashes": {
+            "sha-256": "882d11422ef03d3e56e5b269c4dfbcc8f1f14e72e65ff3fe4ee4ad8d01caef3d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/system/vector3.hpp"
+          },
+          "hashes": {
+            "sha-256": "66a20a855b8bf7fabb40161cdeb5938daf6d09bb003c0b7cbfc3c3472b066991"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/system/vector3.inl"
+          },
+          "hashes": {
+            "sha-256": "6edbed8d8c91c64230bd6f6eb012e686872db7e051f00054a44a4e5569695d18"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics.hpp"
+          },
+          "hashes": {
+            "sha-256": "eb183bdde478065ea982f4451b65cacc3e9b77072795a05c8b0fbdd16dd9bf82"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/blendmode.hpp"
+          },
+          "hashes": {
+            "sha-256": "67f8a75cd8421617f1c7dc032e439c09ca86b514f58459f49a0ff61f9ad502a8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/export.hpp"
+          },
+          "hashes": {
+            "sha-256": "7affed22268619c34d3aecb46ebaa5c0a91b0ff28fa5075ebdc2924316fa5f98"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/circleshape.hpp"
+          },
+          "hashes": {
+            "sha-256": "af34a1b51aad27f922ae1cc713313fba8a7e1f71e37d2b8f2c53f15e43db0556"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/shape.hpp"
+          },
+          "hashes": {
+            "sha-256": "b4d43e4b392320de096fb82032068f2dcb4639c9c16813a083d726fa7dabe658"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/color.hpp"
+          },
+          "hashes": {
+            "sha-256": "e03c5c222228e23026f68353ccc3d6d486ce2c4511db4a2266dac060551e1fdd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/color.inl"
+          },
+          "hashes": {
+            "sha-256": "509b90319318a0312d2cbf414266cfe6512d807abf1e8cf00902deed43d1ced3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/drawable.hpp"
+          },
+          "hashes": {
+            "sha-256": "0cad9bc771138aa30ee2a395272c54f05db176839988cd8017b198943eecadf2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/primitivetype.hpp"
+          },
+          "hashes": {
+            "sha-256": "e1be0d2576fc882a52d56f87303768376c00beaceca9a4bdbfcd9e1d9fdbb3a2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/rect.hpp"
+          },
+          "hashes": {
+            "sha-256": "e6a084082af0a92f37d97c8f33abf57496130609d65cb0031bd2ad7bfc7cc6bc"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/rect.inl"
+          },
+          "hashes": {
+            "sha-256": "5f47dcaccbbfc4bd9d061520acd13afc9b196c0f7c8376d5633b21622821d9ee"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/renderstates.hpp"
+          },
+          "hashes": {
+            "sha-256": "0245b79cf59b5c88727c293fa3b015cafd6f546bb250111f04c2db368db3a0f0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/coordinatetype.hpp"
+          },
+          "hashes": {
+            "sha-256": "40b998568311460db388cc18dbaa1a1ffb45147c11d9e732ec410e99fb168375"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/stencilmode.hpp"
+          },
+          "hashes": {
+            "sha-256": "5ecd02f07003aa5fc5f6fb5a4409a0ea59c8ee70070ce340ce0a8e735b11f454"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/transform.hpp"
+          },
+          "hashes": {
+            "sha-256": "cd1eb9e9b65490f336c6a26314a0bc8fc6953f8195aa7f31cebed517e860b810"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/transform.inl"
+          },
+          "hashes": {
+            "sha-256": "28975f13064dc20961e6a49d43fdc069411a1efc074592c0d1a87f18d8d87d58"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/transformable.hpp"
+          },
+          "hashes": {
+            "sha-256": "0fe3d4f118e90e47db0b767d3f2dc4667e2e089158cc124bc4f6b1a7bf453a0f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/vertexarray.hpp"
+          },
+          "hashes": {
+            "sha-256": "b4774e205808d5c09c9fb2b0ef52a5a3e8b4ee5a426c75180bb1c4f0883983d5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/vertex.hpp"
+          },
+          "hashes": {
+            "sha-256": "ac9ce75ac58d0b409565164b3617c37f86b6d0f5910d4a36e0f9e7b18e91f92f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/convexshape.hpp"
+          },
+          "hashes": {
+            "sha-256": "2e61da501dc3e9faa1d7d5959a22ea723ea85240daa12e30d7bf076ba6e80809"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/font.hpp"
+          },
+          "hashes": {
+            "sha-256": "9250c2d9c76f3938e7dca3e9405bc6ed7143c76f6cc3634f7211aedafec17b91"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/glyph.hpp"
+          },
+          "hashes": {
+            "sha-256": "2524240c3464353b875db25be366b6f03c99117385d0dbcc462725e1c961702c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/texture.hpp"
+          },
+          "hashes": {
+            "sha-256": "f7f411da9d61b798a348c20793f9788de86ebe73cd261ed715cf015286adde27"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/window/glresource.hpp"
+          },
+          "hashes": {
+            "sha-256": "9b95e70abe50cf97c940b3e90146b3654814d176c29bf6519e8d75d01f3f73d0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/window/export.hpp"
+          },
+          "hashes": {
+            "sha-256": "525c927aa6c19b5ffb4b9b30594b52c84abd702d9a46291bb7d53b114eb46217"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/image.hpp"
+          },
+          "hashes": {
+            "sha-256": "b7f7af8c270b3abf85df3d760239019eff44693d44a05e35b52b02095ee918a5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/rectangleshape.hpp"
+          },
+          "hashes": {
+            "sha-256": "1cceee3336e2cc3d86abdfb1583e88593d8f6b099079b50837f0acc4a57d9a5e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/rendertarget.hpp"
+          },
+          "hashes": {
+            "sha-256": "c02d51364e3e0f2e4c94eb339957c0823bf2c1dac15c137cabefa4f72fb747bd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/view.hpp"
+          },
+          "hashes": {
+            "sha-256": "5846951162ced5437f9083ecccfb09bc85e585a00bbbfb698919514975d35602"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/rendertexture.hpp"
+          },
+          "hashes": {
+            "sha-256": "7e5f49f4c152cce18f76bd7ab824840169b261c2e4ebf79edd2a138394f90ce6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/window/contextsettings.hpp"
+          },
+          "hashes": {
+            "sha-256": "fba1e9b7f387476f6a1785f1a5ae67e3154eca40dafc2923990ebd5fd2f8cf10"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/renderwindow.hpp"
+          },
+          "hashes": {
+            "sha-256": "377d80e1d6d640409cce30aff88f0f2c97b8360e7baece893c3f103f2cf795e4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/window/videomode.hpp"
+          },
+          "hashes": {
+            "sha-256": "221f06f621b739cea61e4f8738f08ce750fd8e61f685105a758348222fb25c3a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/window/window.hpp"
+          },
+          "hashes": {
+            "sha-256": "d33c7d96328be4ea5a711683026d55154a9c5013645ee7d0d89649db4ee401e8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/window/windowbase.hpp"
+          },
+          "hashes": {
+            "sha-256": "cb94cfbc361841fdb27955d79b24e5645d5f0b5e864f993649e7a875b87832ca"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/window/vulkan.hpp"
+          },
+          "hashes": {
+            "sha-256": "78285a7f15a5ee94918c269c61cd64a501438d8cab36d180000937ea09dbd3da"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/window/windowenums.hpp"
+          },
+          "hashes": {
+            "sha-256": "74974134beadb94de72ec8d8bb03d3ed56ea715ed893e97e82ba189d47c3414b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/window/windowhandle.hpp"
+          },
+          "hashes": {
+            "sha-256": "b122614994d891980bb0c7fe80dc4540d7acaebbb38aef669b2e067c8e648b04"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/window/windowbase.inl"
+          },
+          "hashes": {
+            "sha-256": "7a992bccc090f661afbc112a200f0a846fea56051ecbcda2d6e729509ed2c807"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/window/event.hpp"
+          },
+          "hashes": {
+            "sha-256": "33fceb5846f5afb347ddec9d6ad6cf3d331552076d18b7236a796139779fd808"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/window/joystick.hpp"
+          },
+          "hashes": {
+            "sha-256": "84f74b8891228ab6be1413f5eb4d8846bc5c4135c22ad6c2467590bf46d55e5e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/window/keyboard.hpp"
+          },
+          "hashes": {
+            "sha-256": "8609ef78437094d824fc71435f36de686d6b36ef1631f047931e123b885315a3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/window/mouse.hpp"
+          },
+          "hashes": {
+            "sha-256": "4362721c8ed7cb475a869821142510f13b1f75470f0bd762d23b4d9be1eee074"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/window/sensor.hpp"
+          },
+          "hashes": {
+            "sha-256": "61b0736a4519afa4b995d8e534a30b3991c2e59370a10ccd6a014537b9079264"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/window/event.inl"
+          },
+          "hashes": {
+            "sha-256": "0f61617032c7c4c0f281fd4aa7daa3bf6776a9f702b857e9a570f6212f05eaca"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/shader.hpp"
+          },
+          "hashes": {
+            "sha-256": "a2495ab6c6c82a22b79ca2d58e4ae808d53f2b75da61f82ae9748033fa581c7f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/glsl.hpp"
+          },
+          "hashes": {
+            "sha-256": "ff38a16e9723477592e23b8ebf9018d94ace5b52e726924f1397066946659ec5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/glsl.inl"
+          },
+          "hashes": {
+            "sha-256": "6e21f9df9ce4043df2fa5f2a072651c1e5118d3bad58109b40d6270bef5879c1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/sprite.hpp"
+          },
+          "hashes": {
+            "sha-256": "941f0ca733f547521843d6b9ca8768d30f72438274c431d4c5a1a0f127f07ab3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/text.hpp"
+          },
+          "hashes": {
+            "sha-256": "7497b332d48c56a3451a354a22c9fee416a8eecca3112fd362025a62cf415ea6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/graphics/vertexbuffer.hpp"
+          },
+          "hashes": {
+            "sha-256": "5aeb01038f34893bafee18890e8d5477f6f8282455c94625136ed6e06f0ca8db"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/window.hpp"
+          },
+          "hashes": {
+            "sha-256": "54d09dfb400dd6126e0da82db442bdf17d62da2b5eddc642cc258a3e9affe6d8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/window/clipboard.hpp"
+          },
+          "hashes": {
+            "sha-256": "e5693db4c0af9c2db1d8fc50439a6ee6349ebdb018b6ce60b3f1757faf523c7f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/window/context.hpp"
+          },
+          "hashes": {
+            "sha-256": "01401092fe0365ba1fa9b9ee72257ffbb398213987f239bfd6664ad50ec3bf61"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/window/cursor.hpp"
+          },
+          "hashes": {
+            "sha-256": "abca7802558acb0d4b3b188feb7ccf5ed042ece59120044c2d09734205e0a3d6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/external/include/sfml/window/touch.hpp"
+          },
+          "hashes": {
+            "sha-256": "d046642cd5994e32b2d3c87c612eee2cb136facb8795797bb318d9cd6f322d6c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/sudoku/game.h"
+          },
+          "hashes": {
+            "sha-256": "1f608241ebaa0c845b136f231145ca7dd101ff2e365f40edf306a6ff34a7bf0d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/sudoku/grid.h"
+          },
+          "hashes": {
+            "sha-256": "b1dfbf41c4a8d26d2a864ae8b027dee8dfe2a059b5b3d4f177bd166cf80e2bec"
+          }
+        }
+      ]
+    }
+  ]
+}

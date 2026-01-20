@@ -71,7 +71,7 @@ void RunGame::drawBoardNumbers(sf::RenderTarget& target, const Game& game, const
             }
             else
             {
-                // Draw pencil marks for empty cells
+                // Draw pencil marks for empty cells    
                 unsigned int smallCharSize = static_cast<unsigned int>(cellBounds.size.y * 0.2f);
                 float cellW = cellBounds.size.x / 3.0f;
                 float cellH = cellBounds.size.y / 3.0f;
@@ -158,7 +158,6 @@ void RunGame::runGame(int clues)
                 if (const auto* mb = event->getIf<sf::Event::MouseButtonPressed>()) {
                     if (mb->button == sf::Mouse::Button::Left)
                     {
-                        // convert the event pixel position to world coordinates
                         sf::Vector2f worldPos = window.mapPixelToCoords(mb->position);
 
                         tools.selectAtPosition(worldPos);
@@ -177,6 +176,47 @@ void RunGame::runGame(int clues)
                             }
                             selectedCell = { -1, -1 };
                             grid.selectCell(selectedCell);
+                            continue;
+                        }
+
+                        if (tools.solvePressed())
+                        {
+                            std::array<int, 81> solved;
+                            if (Solver::solve(game.rawBoard(), solved))
+                            {
+                                sf::Clock stepClock;
+                                const float stepDelay = 0.05f;
+
+                                for (int i = 0; i < 81; ++i)
+                                {
+                                    if (puzzle[i] == 0)
+                                    {
+                                        sf::Vector2i cell(i % 9, i / 9);
+                                        game.setCell(cell, solved[i]);
+
+                                        window.clear(sf::Color::White);
+                                        grid.draw(window);
+                                        drawBoardNumbers(window, game, grid, font, numbers.getSelectedNumber(), puzzle, solution, showValidation);
+                                        numbers.draw(window);
+                                        tools.draw(window);
+                                        window.display();
+
+                                        stepClock.restart();
+                                        while (stepClock.getElapsedTime() < sf::seconds(stepDelay))
+                                        {
+                                            while (const std::optional event = window.pollEvent())
+                                            {
+                                                if (event->is<sf::Event::Closed>())
+                                                {
+                                                    window.close();
+                                                    goto exit_solve;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            exit_solve:;
+                            }
                             continue;
                         }
 

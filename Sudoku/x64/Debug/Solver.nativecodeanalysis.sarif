@@ -1,0 +1,43 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "MSVC Code Analysis",
+          "version": "14.44.35222.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/sudoku/solver.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "5b87b9de54fd376c67476dd91a3ef9dd10ef1ecd8d56db40e4b4aff69259e049"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/sk3eba/desktop/studia/studia/iii semestr/c++/sudoku/sudoku/solver.h"
+          },
+          "hashes": {
+            "sha-256": "2cf15dc56f7685e6784932c47c6267b88144c0ffb9422da6e1e2e4ac56a4f7bd"
+          }
+        }
+      ]
+    }
+  ]
+}

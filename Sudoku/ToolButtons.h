@@ -14,6 +14,7 @@ public:
     void selectAtPosition(sf::Vector2f worldPos);
 
     bool restartPressed();
+    bool solvePressed();
 
     bool isValidationActive() const;
     void toggleValidation();
@@ -35,6 +36,7 @@ private:
     bool m_pencilActive = false;
     bool m_restartPressed = false;
     bool m_validationActive = false;
+    bool m_solvePressed = false;
 };
 
 
