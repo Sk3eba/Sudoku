@@ -1,0 +1,21 @@
+var NAVTREEINDEX0 =
+{
+"_game_8h_source.html":[1,0,0,0],
+"_grid_8h_source.html":[1,0,0,1],
+"_numbers_8h_source.html":[1,0,0,2],
+"_run_game_8h_source.html":[1,0,0,3],
+"_solver_8h_source.html":[1,0,0,4],
+"_tool_buttons_8h_source.html":[1,0,0,5],
+"annotated.html":[0,0],
+"class_game.html":[0,0,0],
+"class_grid.html":[0,0,1],
+"class_numbers.html":[0,0,2],
+"class_run_game.html":[0,0,3],
+"class_solver.html":[0,0,4],
+"class_tool_buttons.html":[0,0,5],
+"classes.html":[0,1],
+"dir_451d32e13bf7ddb19b67706fc3b58e27.html":[1,0,0],
+"files.html":[1,0],
+"index.html":[],
+"pages.html":[]
+};

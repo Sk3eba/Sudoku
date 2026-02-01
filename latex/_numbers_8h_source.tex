@@ -1,0 +1,44 @@
+\doxysection{Numbers.\+h}
+\hypertarget{_numbers_8h_source}{}\label{_numbers_8h_source}\index{Sudoku/Numbers.h@{Sudoku/Numbers.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }Numbers}
+\DoxyCodeLine{00008\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \ \ Numbers(sf::Vector2f\ position,\ \textcolor{keywordtype}{float}\ size,\ \textcolor{keyword}{const}\ sf::Font\ font);}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{comment}{//draw\ numbers\ to\ target}}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{void}\ draw(sf::RenderTarget\ \&target)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{comment}{//update\ numbers\ top-\/left\ position}}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{void}\ setPosition(sf::Vector2f\ position);}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{comment}{//selection}}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ setSelectedCell(sf::Vector2i\ cell);\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//select\ a\ cell\ (use\ \{-\/1,-\/1\}\ to\ clear)}}
+\DoxyCodeLine{00018\ \ \ \ \ sf::Vector2i\ getSelectedCell()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{int}\ getSelectedNumber()\ \textcolor{keyword}{const};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/1\ if\ none\ selected}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//select\ by\ mouse\ position}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ selectAtPosition(sf::Vector2f\ worldPos);}
+\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ rebuildShapes();}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ updateButtonVisuals();}
+\DoxyCodeLine{00025\ \ \ \ \ sf::Vector2i\ cellAtPosition(sf::Vector2f\ worldPos)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ sf::Vector2f\ m\_position;}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_size;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_cellSize;}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ sf::Font\ m\_font;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ std::array<int,\ 9>\ m\_numbers;}
+\DoxyCodeLine{00033\ \ \ \ \ std::vector<sf::CircleShape>\ m\_buttons;}
+\DoxyCodeLine{00034\ \ \ \ \ std::vector<sf::Text>\ m\_texts;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_selectedIndex\ =\ -\/1;}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+
+\end{DoxyCode}

@@ -1,0 +1,38 @@
+\doxysection{Grid.\+h}
+\hypertarget{_grid_8h_source}{}\label{_grid_8h_source}\index{Sudoku/Grid.h@{Sudoku/Grid.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }Grid}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ \ \ Grid(sf::Vector2f\ position,\ \textcolor{keywordtype}{float}\ size);}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{comment}{//draw\ grid\ to\ target}}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{void}\ draw(sf::RenderTarget\ \&target)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{comment}{//update\ grid\ top-\/left\ position}}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{void}\ setPosition(sf::Vector2f\ position);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ sf::Vector2i\ cellAt(sf::Vector2f\ point);}
+\DoxyCodeLine{00018\ \ \ \ \ sf::FloatRect\ getCellBounds(sf::Vector2i\ cell)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ selectCell(sf::Vector2i\ cell);}
+\DoxyCodeLine{00021\ \ \ \ \ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ rebuildShapes();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ sf::Vector2f\ m\_position;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_size;}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_cellSize;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ sf::RectangleShape\ m\_background;}
+\DoxyCodeLine{00030\ \ \ \ \ std::vector<sf::RectangleShape>\ m\_lines;}
+\DoxyCodeLine{00031\ \ \ \ \ sf::RectangleShape\ highlightRect;}
+\DoxyCodeLine{00032\ \};}
+
+\end{DoxyCode}

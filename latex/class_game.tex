@@ -1,0 +1,53 @@
+\doxysection{Game Class Reference}
+\hypertarget{class_game}{}\label{class_game}\index{Game@{Game}}
+
+
+Reprezentuje stan logiczny planszy Sudoku.  
+
+
+
+
+{\ttfamily \+\#include $<$Game.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_game_a8ba8d7bcda356ed584dc445184320ff7}\label{class_game_a8ba8d7bcda356ed584dc445184320ff7} 
+void {\bfseries clear} ()
+\item 
+\Hypertarget{class_game_a94ba86417367eb71c7d5499a2683383b}\label{class_game_a94ba86417367eb71c7d5499a2683383b} 
+bool {\bfseries set\+Cell} (sf::\+\+Vector2i cell, int value)
+\item 
+\Hypertarget{class_game_aac3194a54edac226173fb40025d8b02b}\label{class_game_aac3194a54edac226173fb40025d8b02b} 
+int {\bfseries get\+Cell} (sf::\+\+Vector2i cell) const
+\item 
+\Hypertarget{class_game_afd46942da8ec432e73a51915c84fe438}\label{class_game_afd46942da8ec432e73a51915c84fe438} 
+bool {\bfseries is\+Valid\+Move} (sf::\+\+Vector2i cell, int value) const
+\item 
+\Hypertarget{class_game_a4fc73682776cd50924bf47a5ad206930}\label{class_game_a4fc73682776cd50924bf47a5ad206930} 
+bool {\bfseries is\+Board\+Valid} () const
+\item 
+\Hypertarget{class_game_a4cc12a4c365e05d0aa7191a8e7892b7c}\label{class_game_a4cc12a4c365e05d0aa7191a8e7892b7c} 
+bool {\bfseries is\+Solved} () const
+\item 
+\Hypertarget{class_game_a74a31f18e6bd6a42aaf783bc554ededd}\label{class_game_a74a31f18e6bd6a42aaf783bc554ededd} 
+const std::\+array$<$ int, 81 $>$ \& {\bfseries raw\+Board} () const
+\item 
+\Hypertarget{class_game_a1e3c154fb607cb06fda799e91dd20bd7}\label{class_game_a1e3c154fb607cb06fda799e91dd20bd7} 
+void {\bfseries toggle\+Candidate} (sf::\+\+Vector2i cell, int number)
+\item 
+\Hypertarget{class_game_a87c1b9463f085d7fcfb931a211591fde}\label{class_game_a87c1b9463f085d7fcfb931a211591fde} 
+bool {\bfseries has\+Candidate} (sf::\+\+Vector2i cell, int number) const
+\item 
+\Hypertarget{class_game_aac7a12c603daa84b41c8495bdffbee07}\label{class_game_aac7a12c603daa84b41c8495bdffbee07} 
+void {\bfseries clear\+Candidates} (sf::\+\+Vector2i cell)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Reprezentuje stan logiczny planszy Sudoku. 
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Sudoku/\+Game.\+h\item 
+Sudoku/\+Game.\+cpp\end{DoxyCompactItemize}

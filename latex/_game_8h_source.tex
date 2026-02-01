@@ -1,0 +1,55 @@
+\doxysection{Game.\+h}
+\hypertarget{_game_8h_source}{}\label{_game_8h_source}\index{Sudoku/Game.h@{Sudoku/Game.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <SFML/System.hpp>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }Game}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ \ \ \ \ Game();}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{//clear\ board}}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{void}\ clear();}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{//set\ value\ at\ cell\ 0-\/9,\ returns\ true\ if\ successful}}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{bool}\ setCell(sf::Vector2i\ cell,\ \textcolor{keywordtype}{int}\ value);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//read\ value\ at\ cell\ 0-\/9,\ if\ out-\/of-\/range\ returns\ -\/1.}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{int}\ getCell(sf::Vector2i\ cell)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//checks\ if\ move\ is\ valid\ (no\ duplicates)}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{bool}\ isValidMove(sf::Vector2i\ cell,\ \textcolor{keywordtype}{int}\ value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//checks\ if\ board\ is\ valid}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{bool}\ isBoardValid()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//returns\ true\ if\ board\ is\ completely\ solved}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ isSolved()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//access\ board\ as\ array\ of\ 81\ integers\ (0\ =\ empty)}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ std::array<int,\ 81>\&\ rawBoard()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_cells;\ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ toggleCandidate(sf::Vector2i\ cell,\ \textcolor{keywordtype}{int}\ number);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasCandidate(sf::Vector2i\ cell,\ \textcolor{keywordtype}{int}\ number)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ clearCandidates(sf::Vector2i\ cell);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00043\ \ \ \ \ std::array<int,\ 81>\ m\_cells;}
+\DoxyCodeLine{00044\ \ \ \ \ std::array<std::array<bool,\ 10>,\ 81>\ m\_candidates;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ inRangeCell(sf::Vector2i\ cell);}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ indexFromCell(sf::Vector2i\ cell);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//helpers\ for\ board\ validation}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{bool}\ checkRowValid(\textcolor{keywordtype}{int}\ row)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{bool}\ checkColValid(\textcolor{keywordtype}{int}\ col)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{bool}\ checkBlockValid(\textcolor{keywordtype}{int}\ blockRow,\ \textcolor{keywordtype}{int}\ blockCol)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00053\ \};}
+
+\end{DoxyCode}

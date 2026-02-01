@@ -4,6 +4,6 @@ int main()
 {
     RunGame runGameInstance;
     //cells solved at start
-    runGameInstance.runGame(50);
+    runGameInstance.runGame(1);
     return 0;
 }
